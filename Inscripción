@@ -15,8 +15,8 @@ public class Inscripcion {
     //Constructores
     public Inscripcion(){
         this.setHora (12);
-        this.setSocio ("Pepe",18, 49396412, "Av. Brasil");
-        this.setActividad ();
+        this.setSocio (new Socio());
+        this.setActividad (new Actividad());
         this.setTel (27072345);
     }
 
