@@ -54,6 +54,16 @@ public class Prueba {
                     break;
                 }
                 case 2: {
+                    Inscripcion i1 = new Inscripcion();
+                    Inscripcion i2 = new Inscripcion();
+                    i1.setSocio(c1);
+                    i2.setSocio(c2);
+                    int h1=0;
+                    int h2=0;
+                    int aux1=h1-1;
+                    int aux2=h2-1;
+                    
+                    
                     
                     break;
                 }
