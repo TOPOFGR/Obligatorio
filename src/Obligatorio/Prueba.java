@@ -20,6 +20,7 @@ public class Prueba {
         Actividad a1 = ingresarActividad();
         Inscripcion i1 = null;
         Inscripcion i2 = null;
+        //Se empieza el menú
         int opc = 0;
         Scanner in = new Scanner(System.in);
         System.out.println("Seleccione opción del menú");
@@ -139,14 +140,26 @@ public class Prueba {
         Actividad a = null;
         System.out.println("Ingrese día de la Actividad");
         int dia=inp.nextInt();
+        while (dia<1 || dia >31){
+            System.out.println("Ingrese día entre 1-31");
+            dia=inp.nextInt();
+        }
         System.out.println("Ingrese tipo de Actividad");
         int tipo=inp.nextInt();
+        while (tipo<1 || tipo>7){
+            System.out.println("Ingrese actividad entre 1-7");
+            tipo=inp.nextInt();
+        }
         System.out.println("Ingrese Capacidad Máxima");
         int capamax=inp.nextInt();
         System.out.println("Ingrese costo");
         int costo=inp.nextInt();
         System.out.println("Ingrese la hora de comienzo");
         int horac=inp.nextInt();
+        while (horac<6||horac>20){
+            System.out.println("Seleccione hora de comienzo (6-20)");
+            horac=inp.nextInt();
+        }
         a = new Actividad(dia,tipo,capamax,costo,horac);
             
         return a;
