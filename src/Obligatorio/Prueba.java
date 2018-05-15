@@ -12,12 +12,14 @@ import java.util.Scanner;
  * @author Franco Galeano y Felipe Estrella
  */
 public class Prueba {
-
+    
     public static void main(String[] args) {
         //Definir, los dos socios, una actividad y dos inscripciones
-        Socio c1 = new Socio("Pepe", 18, 49396412, "Av. Brasil");
-        Socio c2 = new Socio("Carlos", 24, 49602653, "Bv. España");
-        Actividad a1 = new Actividad(12,1,200,180,18);
+        Socio c1 = ingresarSocio();
+        Socio c2 = ingresarSocio();
+        Actividad a1 = ingresarActividad();
+        Inscripcion i1 = null;
+        Inscripcion i2 = null;
         int opc = 0;
         Scanner in = new Scanner(System.in);
         System.out.println("Seleccione opción del menú");
@@ -53,12 +55,9 @@ public class Prueba {
                     }
                     break;
                 }
-                case 2: {
-                    Inscripcion i1 = new Inscripcion();
-                    Inscripcion i2 = new Inscripcion();
-                    int soc=0;
+                case 2: {                   
                     System.out.println("Seleccione que socio quiere ingresar primero, el socio 1 o el socio 2 (ingrese 1 o 2)");
-                    soc=in.nextInt();
+                    int soc=in.nextInt();
                     while (soc<1 || soc >2){
                         System.out.println("Ingrese un número correcto (1 o 2)");
                         soc=in.nextInt();
@@ -72,7 +71,7 @@ public class Prueba {
                     i1.setActividad(a1);
                     i2.setActividad(a1);
                     System.out.println("Ingrese hora de la Actividad en la primera inscripción");
-                    int h1=0;
+                    int h1=in.nextInt();
                     while (h1<6 || h1>20){
                         System.out.println("Ingrese una hora válida (de 6 a 20 hs)");
                         h1=in.nextInt();
@@ -82,7 +81,7 @@ public class Prueba {
                     i1.setHora(aux1);
                     System.out.println("Se le pasará a buscar a las "+ aux1+ "hs");
                     System.out.println("Ingrese hora de la Actividad en la segunda inscripción");
-                    int h2=0;
+                    int h2=in.nextInt();
                     while (h2<6 || h2>20){
                         System.out.println("Ingrese una hora válida (de 6 a 20 hs)");
                         h2=in.nextInt();
@@ -91,12 +90,6 @@ public class Prueba {
                     int aux2=h2-1;
                     i2.setHora(aux2);
                     System.out.println("La hora que se lo pasará a buscar sera a las "+ aux2+ "hs");
-                    
-                    
-                    
-                    
-                    
-                    
                     break;
                 }
                 case 3: {
@@ -108,49 +101,54 @@ public class Prueba {
                     break;
                 }
                 case 5: {
+                    if ((i1==null)&&(i2==null)){                    
+                        System.out.println("No se crearon inscripciones, la Actividad es "+a1+" y los Socios son "+c1+" y "+ c2);                        
+                    }
+                    if ((i1!=null)&&(i2!=null)) {
+                        System.out.println("La actividad es "+ a1+"los socios son"+ c1+ " y "+ c2+" y las inscripciones son " +i1+"y" +i2);
+                            }
+                    
 
                     break;
                 }
                 default: {
                     System.out.println("Ingrese un número del 1-6");
+                    opc=in.nextInt();
                 }
             }
-
         } while (opc != 6);
 
     }
     public static Socio ingresarSocio(){
-        Socio s = null;
-        String nom= null;
+        Socio s = null;        
         Scanner input = new Scanner (System.in);
         System.out.println("Ingrese nombre del Socio");
-        nom=input.nextLine();
-        int ed=0;
+        String nom=input.nextLine();        
         System.out.println("Ingresar Edad");
-        ed=input.nextInt();
-        int ced=0;
+        int ed=input.nextInt();        
         System.out.println("Ingresar documento");
-        ced=input.nextInt();
-        String dir=null;
+        int ced=input.nextInt();  
+        input.nextLine();
         System.out.println("Ingresar dirección");
-        dir=input.nextLine();
+        String dir=input.nextLine();
+        s = new Socio(nom,ed,ced,dir);
         return s;
     }
     public static Actividad ingresarActividad(){
         Scanner inp= new Scanner(System.in);
         Actividad a = null;
-        int dia =0;
         System.out.println("Ingrese día de la Actividad");
-        dia=inp.nextInt();
-        int tipo=0;
+        int dia=inp.nextInt();
         System.out.println("Ingrese tipo de Actividad");
-        tipo=inp.nextInt();
-        int capamax = 0;
+        int tipo=inp.nextInt();
         System.out.println("Ingrese Capacidad Máxima");
-        capamax=inp.nextInt();
-        int costo=0;
+        int capamax=inp.nextInt();
         System.out.println("Ingrese costo");
-
+        int costo=inp.nextInt();
+        System.out.println("Ingrese la hora de comienzo");
+        int horac=inp.nextInt();
+        a = new Actividad(dia,tipo,capamax,costo,horac);
+            
+        return a;
     }
 }
-
