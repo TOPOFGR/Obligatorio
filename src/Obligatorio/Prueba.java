@@ -132,8 +132,15 @@ public class Prueba {
                     }
                     else {
                         i1.setHora(i1.getHora() +relacion);
+                        while (i1.getHora()<6){
+                            i1.setHora(i1.getHora()+1);
+                        }
                         i2.setHora(i2.getHora() +relacion);
-                        
+                        while (i2.getHora()<6){
+                            i2.setHora(i2.getHora()+1);
+                        }
+                        System.out.println("La nueva hora de la Actividad es "+a1.getHorac()+", la hora de la primera inscripcion es "+i1.getHora()+" y el de la segunda inscripcion"+i2.getHora());
+                    }
                     break;
                 }
                 case 5: {
