@@ -125,7 +125,7 @@ public class Prueba {
                         System.out.println("Seleccione hora valida (7-21)");
                         nuevaHoraActividad = in.nextInt();    
                     }
-                    int relacion= a1.getHorac()-nuevaHoraActividad;
+                    int relacion= nuevaHoraActividad - a1.getHorac();
                         a1.setHorac(nuevaHoraActividad);
                     if (i1==null){
                         System.out.println("No hay inscripciones");
