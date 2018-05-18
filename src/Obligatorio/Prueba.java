@@ -119,11 +119,21 @@ public class Prueba {
                     if (i1==null){
                         System.out.println("No hay inscripciones");
                     }
-                    /*
-                    else {
-                        System.out.println("Esto lo haces vos estrella");
+                    System.out.println("Ingrese nueva hora de Actividad");
+                    int nuevaHoraActividad = in.nextInt();
+                    while (nuevaHoraActividad<7 || nuevaHoraActividad>21){
+                        System.out.println("Seleccione hora valida (7-21)");
+                        nuevaHoraActividad = in.nextInt();    
                     }
-                    */
+                    int relacion= a1.getHorac()-nuevaHoraActividad;
+                        a1.setHorac(nuevaHoraActividad);
+                    if (i1==null){
+                        System.out.println("No hay inscripciones");
+                    }
+                    else {
+                        i1.setHora(i1.getHora() +relacion);
+                        i2.setHora(i2.getHora() +relacion);
+                        
                     break;
                 }
                 case 5: {
