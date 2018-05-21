@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Obligatorio;
 
 /**
@@ -7,33 +12,33 @@ package Obligatorio;
 public class Inscripcion {
 
     //variables de instancia 
-    private int hora;
+    private int horarecogida;
     private Socio socio;
     private Actividad actividad;
-    private int tel;
+    private int telefono;
     
     //Constructores
     public Inscripcion(){
-        this.setHora (12);
+        this.setHorarecogida (12);
         this.setSocio (new Socio());
         this.setActividad (new Actividad());
-        this.setTel (27072345);
+        this.setTelefono (27072345);
     }
 
-    public Inscripcion(int unaHora, Socio unSocio, Actividad unaActividad, int unTel) {
-        this.setHora (unaHora);
+    public Inscripcion(int unaHorarecogida, Socio unSocio, Actividad unaActividad, int unTelefono) {
+        this.setHorarecogida (unaHorarecogida);
         this.setSocio (unSocio);
         this.setActividad  (unaActividad);
-        this.setTel (unTel);
+        this.setTelefono (unTelefono);
     }
 
     //métodos de acceso y modificación
-    public int getHora() {
-        return hora;
+    public int getHorarecogida() {
+        return horarecogida;
     }
 
-    public void setHora(int unaHora) {
-        this.hora = unaHora;
+    public void setHorarecogida(int unaHorarecogida) {
+        this.horarecogida = unaHorarecogida;
     }
 
     public Socio getSocio() {
@@ -52,17 +57,17 @@ public class Inscripcion {
         this.actividad = actividad;
     }
 
-    public int getTel() {
-        return tel;
+    public int getTelefono() {
+        return telefono;
     }
 
-    public void setTel(int tel) {
-        this.tel = tel;
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
     }
 
     @Override
     public String toString() {
-        return ("Inscripción en la " + "hora " + this.getHora() + ", del socio " + this.getSocio() + ", a la actividad " + this.getActividad() + ", con el telefono de contacto" + this.getTel()  );
+        return ("Inscripción en la hora de recogida " + this.getHorarecogida() + ", del socio " + this.getSocio() + ", a la actividad " + this.getActividad() + ", con el telefono de contacto " + this.getTelefono()  );
     }
     
 }
