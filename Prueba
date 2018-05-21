@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Obligatorio;
 
 import java.util.Scanner;
@@ -7,37 +12,193 @@ import java.util.Scanner;
  * @author Franco Galeano y Felipe Estrella
  */
 public class Prueba {
+
     public static void main(String[] args) {
-        //Definir, los dos socios, una actividad y dos inscripciones
-       Socio c1 = new Socio();
-       Socio c2 = new Socio();
-       Actividad a1 = new Actividad();
-       Inscripcion i1 = new Inscripcion();
-       Inscripcion i2 = new Inscripcion();
-       int opc=0;
-       Scanner in = new Scanner (System.in);
-       do {
-           
-        switch (opc) {
-            
-            case 1:{
-                
-                    break;} 
-            case 2:{
-                
-                    break;} 
-            case 3:{
-                
-                    break;} 
-            case 4:{
-                
-                    break;} 
-            case 5:{
-                
-                    break;} 
-    } 
-       }while (opc !=6);
-        
-    
+        //Se definen los dos socios, una actividad y se crean dos inscripciones vacías
+        Socio socio1 = ingresarSocio();
+        Socio socio2 = ingresarSocio();
+        Actividad actividad = ingresarActividad();
+        Inscripcion inscripcion1 = null;
+        Inscripcion inscripcion2 = null;
+        int opcion = 0;//Se empieza el menú
+        Scanner in = new Scanner(System.in);
+        do {
+            System.out.println("Seleccione opción del menú \n 1) Actualización de datos de socio \n 2) Inscripciones a actividad \n 3) Listado de inscripciones \n 4) Actualización de hora de actividad \n 5) Mostrar datos \n 6) Terminar");
+            opcion = in.nextInt();
+            switch (opcion) {
+                case 1: {
+                    System.out.println("Indique cual socio se modificará");
+                    int socio = in.nextInt();
+                    switch (socio){//Se selecciona que socio quiere que se modifique
+                        case 1:{
+                                String nuevaDireccion = in.nextLine();
+                                System.out.println("Ingrese nueva Dirección");
+                                nuevaDireccion = in.nextLine();
+                                socio1.setDireccion(nuevaDireccion);
+                                System.out.println("Ingrese nueva Edad");
+                                int nuevaEdad = in.nextInt();
+                                while (nuevaEdad<18 || nuevaEdad>99){//Se valida la Edad del primer Socio
+                                    System.out.println("Ingrese Edad válida (18-99");
+                                    nuevaEdad = in.nextInt();
+                                }    
+                                socio1.setEdad(nuevaEdad);
+                            break;
+                    }
+                        case 2:{
+                                String nuevaDireccion = in.nextLine();
+                                System.out.println("Ingrese nueva Dirección");
+                                nuevaDireccion = in.nextLine();
+                                socio2.setDireccion(nuevaDireccion);
+                                System.out.println("Ingrese nueva Edad");
+                                int nuevaEdad = in.nextInt();
+                                while (nuevaEdad<18 || nuevaEdad>99){//Se valida la Edad del segundo Socio
+                                    System.out.println("Ingrese Edad válida (18-99");
+                                    nuevaEdad = in.nextInt();
+                                }
+                                socio2.setEdad(nuevaEdad);                    
+                            break;
+                        }
+                        default:{
+                            System.out.println("Ingrese un socio válido (1 o 2)");
+                            break;
+                        }
+                    }
+                    break;
+                }
+                case 2: { //Se hace el cambio mediante el método "ingresarInscripcion"
+                    System.out.println("Primer Socio");
+                    inscripcion1= ingresarInscripcion(socio1,actividad);
+                    System.out.println("Segundo Socio");
+                    inscripcion2= ingresarInscripcion(socio2,actividad);
+                    
+                    break;  
+                }
+                case 3: {
+                    //Se verifica que existan inscripciones
+                    if (inscripcion1 == null) {
+                        System.out.println("No hay inscripciones");
+                    }
+                    else {
+                        if (inscripcion1.getHorarecogida()<inscripcion2.getHorarecogida()){//Se ordena por la hora de pasar a buscar a la persona
+                            System.out.println(inscripcion1.getHorarecogida()+ "\n" + inscripcion2.getHorarecogida());
+                        }
+                        else {
+                            System.out.println(inscripcion2.getHorarecogida()+ "\n" + inscripcion1.getHorarecogida());
+                        } //Se indica si las horas de recogida son tempranas
+                        if (inscripcion1.getHorarecogida()+3<actividad.getHoracomienzo() || inscripcion2.getHorarecogida()+3<actividad.getHoracomienzo()){//Se verifica cual es temprana
+                            if (inscripcion1.getHorarecogida()+3<actividad.getHoracomienzo() ){
+                                System.out.println(inscripcion1.getHorarecogida()+" es Temprana");
+                            }
+                            if (inscripcion2.getHorarecogida()+3<actividad.getHoracomienzo() ){
+                                System.out.println(inscripcion2.getHorarecogida()+" es Temprana");
+                            }
+                        }
+                        else {
+                            System.out.println("Ninguna es Temprana");
+                        }
+                        if (inscripcion1.getHorarecogida()+3<actividad.getHoracomienzo() && inscripcion2.getHorarecogida()+3<actividad.getHoracomienzo()){
+                            System.out.println("Ambas son Tempranas");
+                        }
+                    }
+                    break;
+                }
+                case 4: {
+                    System.out.println("Ingrese nueva hora de Actividad");//Se modifica la hora de la Actividad
+                    int nuevaHoraActividad = in.nextInt();
+                    while (nuevaHoraActividad<7 || nuevaHoraActividad>21){//Se valida la hora de la Actividad
+                        System.out.println("Seleccione hora valida (7-21)");
+                        nuevaHoraActividad = in.nextInt();    
+                    }//Se verifica si existe o no una inscripcion
+                    if (inscripcion1==null){
+                        System.out.println("No hay inscripciones");
+                    }
+                    else {                    
+                    int relacion= nuevaHoraActividad - actividad.getHoracomienzo();
+                    actividad.setHoracomienzo(nuevaHoraActividad);
+                        inscripcion1.setHorarecogida(inscripcion1.getHorarecogida() +relacion);
+                        inscripcion2.setHorarecogida(inscripcion2.getHorarecogida() +relacion);
+                    }
+                    break;
+                }
+                case 5: {//Se verifica si existen inscripciones
+                    if (inscripcion1 == null) {
+                        System.out.println("No se crearon inscripciones, la " + actividad + " y los Socios son " + socio1 + " y " + socio2);
+                    } else {//Como hay inscripciones se imprimen ambas inscripciones
+                        System.out.println("Primera " + inscripcion1);
+                        System.out.println("Segunda " + inscripcion2);
+                    }
+                    break;
+                }
+                default: {
+                    System.out.println("Ingrese un número del 1-6");
+                    opcion = in.nextInt();
+                    break;
+                }
+                case 6:{
+                    System.out.println("Terminado");
+                break;
+                }
+            }
+        } while (opcion != 6);
     }
-}
+    public static Socio ingresarSocio() { //Se hace el método para poder ingresar los datos de los Socios
+        Socio socio = null;
+        Scanner input = new Scanner(System.in);
+        System.out.println("Ingrese nombre del Socio");
+        String nombre = input.nextLine();
+        System.out.println("Ingresar Edad");
+        int edad = input.nextInt();
+        while ((edad<18)|| (edad >99)) {
+            System.out.println("Ingrese Edad entre 18 y 99");
+            edad = input.nextInt();
+        }
+        System.out.println("Ingresar Cedula de identidad (sin guiones)");
+        int cedula = input.nextInt();
+        input.nextLine();
+        System.out.println("Ingresar dirección");
+        String direccion = input.nextLine();
+        socio = new Socio(nombre, edad, cedula, direccion);
+        return socio;
+    }
+    public static Actividad ingresarActividad() {//Se hace el método para poder ingresar los datos de la Actividad
+        Scanner inp = new Scanner(System.in);
+        Actividad a = null;
+        System.out.println("Ingrese día de la Actividad");
+        int dia = inp.nextInt();
+        while (dia < 1 || dia > 31) {//Se valida que el día este entre 1 y 31
+            System.out.println("Ingrese día entre 1-31");
+            dia = inp.nextInt();
+        }
+        System.out.println("Ingrese tipo de Actividad (número del 1-7)");
+        int tipo = inp.nextInt();
+        while (tipo < 1 || tipo > 7) {//Se valida que la actividad este entre 1 y 7
+            System.out.println("Ingrese actividad entre 1-7");
+            tipo = inp.nextInt();
+        }
+        System.out.println("Ingrese Capacidad Máxima");
+        int capacidadmaxima = inp.nextInt();
+        System.out.println("Ingrese costo");
+        int costo = inp.nextInt();
+        System.out.println("Ingrese la hora de comienzo");
+        int horacomienzo = inp.nextInt();
+        while (horacomienzo < 6 || horacomienzo > 20) {
+            System.out.println("Seleccione hora de comienzo (6-20)");
+            horacomienzo = inp.nextInt();
+        }
+        a = new Actividad(dia, tipo, capacidadmaxima, costo, horacomienzo);
+        return a;
+    }
+    public static Inscripcion ingresarInscripcion(Socio unSocio,Actividad unaActividad){//Se crea el método para ingresar el Socio
+        Scanner ins = new Scanner (System.in);
+        Inscripcion i =null;
+        System.out.println("Ingrese Telefono de Contacto");
+        int telefono = ins.nextInt();
+        System.out.println("Ingrese hora en la que quiere que lo pasen a buscar");
+        int horarecogida = ins.nextInt();
+        while (horarecogida <6 || horarecogida>20){//Se valida la hora de recogida del Socio
+            System.out.println("Ingrese hora válida (6-20)");
+            horarecogida = ins.nextInt();
+        }
+        i = new Inscripcion(horarecogida,unSocio,unaActividad, telefono);
+        return i;
+    }
