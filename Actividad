@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Obligatorio;
 
 /**
@@ -8,7 +13,7 @@ public class Actividad {
 
     //variables de instancia
     private int dia;
-    private String tipo;
+    private int tipo;
     private int capmax;
     private int costo;
     private int horac;
@@ -16,18 +21,18 @@ public class Actividad {
     //constructores
     public Actividad() {
         this.setDia(4);
-        this.setTipo("caminata");
+        this.setTipo(1);
         this.setCapmax(28);
         this.setCosto(200);
-        this.setHorac(18);
+        this.setHoracomienzo(18);
     }
 
-    public Actividad(int unDia, String unTipo, int unaCapmax, int unCosto, int unaHorac) {
+    public Actividad(int unDia, int unTipo, int unaCapmax, int unCosto, int unaHoracomienzo) {
         this.setDia(unDia);
         this.setTipo(unTipo);
         this.setCapmax(unaCapmax);
         this.setCosto(unCosto);
-        this.setHorac(unaHorac);
+        this.setHoracomienzo(unaHoracomienzo);
     }
 
     //metodos de acceso y modificación
@@ -39,11 +44,11 @@ public class Actividad {
         this.dia = unDia;
     }
     
-    public String getTipo() {
+    public int getTipo() {
         return tipo;
     }    
     
-    public void setTipo(String unTipo) {
+    public void setTipo(int unTipo) {
         this.tipo = unTipo;
     }
 
@@ -63,18 +68,16 @@ public class Actividad {
         this.costo = unCosto;
     }
 
-    public int getHorac() {
+    public int getHoracomienzo() {
         return horac;
     }
             
-    public void setHorac(int unaHorac) {
-        this.horac = unaHorac;
+    public void setHoracomienzo(int unaHoracomienzo) {
+        this.horac = unaHoracomienzo;
     }
 
     @Override
     public String toString() {
-        return ("Actividad el dia "  + this.getDia() + ", de tipo" + this.getTipo() + ", con la capacidad máxima de " + this.getCapmax() + " personas, con el costo" + this.getCosto() + ", con la hora de comienzo " + this.getHorac() );
-    }
-
-    
+        return ("Actividad el dia "  + this.getDia() + ", de tipo ++4115" + this.getTipo() + ", con la capacidad máxima de " + this.getCapmax() + " personas, con el costo " + this.getCosto() + ", con la hora de comienzo " + this.getHoracomienzo() );
+    }    
 }
