@@ -78,11 +78,6 @@ public class Prueba {
                     break;  
                 }
                 case 3: {
-                    //Se verifica que existan inscripciones
-                    if (inscripcion1 == null) {
-                        System.out.println("No hay inscripciones");
-                    }
-                    else {
                         if (inscripcion1.getHorarecogida()<inscripcion2.getHorarecogida()){
                         //Se ordena por la hora de pasar a buscar a la persona
                             System.out.println(inscripcion1.getHorarecogida()+ "\n" + inscripcion2.getHorarecogida());
@@ -105,7 +100,6 @@ public class Prueba {
                         if (inscripcion1.getHorarecogida()+3<actividad.getHoracomienzo() && inscripcion2.getHorarecogida()+3<actividad.getHoracomienzo()){
                             System.out.println("Ambas son Tempranas");
                         }
-                    }
                     break;
                 }
                 case 4: {
@@ -124,14 +118,9 @@ public class Prueba {
                     break;
                 }
                 case 5: {
-                    //Se verifica si existen inscripciones
-                    if (inscripcion1 == null) {
-                        System.out.println("No se crearon inscripciones, la " + actividad + " y los Socios son " + socio1 + " y " + socio2);
-                    } else {
-                    //Como hay inscripciones se imprimen ambas inscripciones
+                    //Se imprimen ambas inscripciones
                         System.out.println("Primera " + inscripcion1);
                         System.out.println("Segunda " + inscripcion2);
-                    }
                     break;
                 }
                 default: {
@@ -204,7 +193,7 @@ public class Prueba {
     public static Inscripcion ingresarInscripcion(Socio unSocio,Actividad unaActividad){
         //Se crea el método para ingresar el Socio
         Scanner ins = new Scanner (System.in);
-        Inscripcion i =new Inscripcion();
+        Inscripcion inscripcion =new Inscripcion();
         System.out.println("Ingrese Telefono de Contacto");
         int telefono = ins.nextInt();
         System.out.println("Ingrese hora en la que quiere que lo pasen a buscar");
@@ -214,7 +203,7 @@ public class Prueba {
             System.out.println("Ingrese hora válida (6-20)");
             horarecogida = ins.nextInt();
         }
-        i = new Inscripcion(horarecogida,unSocio,unaActividad, telefono);
-        return i;
+        inscripcion = new Inscripcion(horarecogida,unSocio,unaActividad, telefono);
+        return inscripcion;
     }
 }
