@@ -26,58 +26,56 @@ public class Prueba {
             System.out.println("Seleccione opción del menú \n 1) Actualización de datos de socio \n 2) Inscripciones a actividad \n 3) Listado de inscripciones \n 4) Actualización de hora de actividad \n 5) Mostrar datos \n 6) Terminar");
             opcion = in.nextInt();
             switch (opcion) {
-                case 1: {
+                case 1: 
                     System.out.println("Indique cual socio se modificará");
                     int socio = in.nextInt();
                     switch (socio){
                         //Se selecciona que socio quiere que se modifique
-                        case 1:{
-                                String nuevaDireccion = in.nextLine();
+                        case 1:
+                                String nuevaDireccion1 = in.nextLine();
                                 System.out.println("Ingrese nueva Dirección");
-                                nuevaDireccion = in.nextLine();
-                                socio1.setDireccion(nuevaDireccion);
+                                nuevaDireccion1 = in.nextLine();
+                                socio1.setDireccion(nuevaDireccion1);
                                 System.out.println("Ingrese nueva Edad");
-                                int nuevaEdad = in.nextInt();
-                                while (nuevaEdad<18 || nuevaEdad>99){
+                                int nuevaEdad1 = in.nextInt();
+                                while (nuevaEdad1<18 || nuevaEdad1>99){
                                 //Se valida la Edad del primer Socio
                                     System.out.println("Ingrese Edad válida (18-99");
-                                    nuevaEdad = in.nextInt();
+                                    nuevaEdad1 = in.nextInt();
                                 }
-                                socio1.setEdad(nuevaEdad);
+                                socio1.setEdad(nuevaEdad1);
                             break;
-                    }
-                        case 2:{
-                                String nuevaDireccion = in.nextLine();
+                    
+                        case 2:
+                                String nuevaDireccion2 = in.nextLine();
                                 System.out.println("Ingrese nueva Dirección");
-                                nuevaDireccion = in.nextLine();
-                                socio2.setDireccion(nuevaDireccion);
+                                nuevaDireccion2 = in.nextLine();
+                                socio2.setDireccion(nuevaDireccion2);
                                 System.out.println("Ingrese nueva Edad");
-                                int nuevaEdad = in.nextInt();
-                                while (nuevaEdad<18 || nuevaEdad>99){
+                                int nuevaEdad2 = in.nextInt();
+                                while (nuevaEdad2<18 || nuevaEdad2>99){
                                 //Se valida la Edad del segundo Socio
                                     System.out.println("Ingrese Edad válida (18-99");
-                                    nuevaEdad = in.nextInt();
+                                    nuevaEdad2 = in.nextInt();
                                 }
-                                socio2.setEdad(nuevaEdad);                    
-                            break;
-                        }
-                        default:{
+                                socio2.setEdad(nuevaEdad2);                    
+                            break;    
+                            
+                        default:
                             System.out.println("Ingrese un socio válido (1 o 2)");
-                            break;
-                        }
-                    }
+                            break;   
+                    } 
                     break;
-                }
-                case 2: {
+                
+                case 2: 
                     //Se hace el cambio mediante el método "ingresarInscripcion"
                     System.out.println("Primer Socio");
                     inscripcion1= ingresarInscripcion(socio1,actividad);
                     System.out.println("Segundo Socio");
                     inscripcion2= ingresarInscripcion(socio2,actividad);
-                    
                     break;  
-                }
-                case 3: {
+                
+                case 3: 
                         if (inscripcion1.getHorarecogida()<inscripcion2.getHorarecogida()){
                         //Se ordena por la hora de pasar a buscar a la persona
                             System.out.println(inscripcion1.getHorarecogida()+ "\n" + inscripcion2.getHorarecogida());
@@ -101,8 +99,8 @@ public class Prueba {
                             System.out.println("Ambas son Tempranas");
                         }
                     break;
-                }
-                case 4: {
+                
+                case 4: 
                     System.out.println("Ingrese nueva hora de Actividad");
                     //Se modifica la hora de la Actividad
                     int nuevaHoraActividad = in.nextInt();
@@ -116,22 +114,20 @@ public class Prueba {
                         inscripcion1.setHorarecogida(inscripcion1.getHorarecogida() +relacion);
                         inscripcion2.setHorarecogida(inscripcion2.getHorarecogida() +relacion);   
                     break;
-                }
-                case 5: {
+                
+                case 5: 
                     //Se imprimen ambas inscripciones
                         System.out.println("Primera " + inscripcion1);
                         System.out.println("Segunda " + inscripcion2);
                     break;
-                }
-                default: {
+                case 6:
+                    System.out.println("Terminado");
+                break;
+                
+                default: 
                     System.out.println("Ingrese un número del 1-6");
                     opcion = in.nextInt();
                     break;
-                }
-                case 6:{
-                    System.out.println("Terminado");
-                break;
-                }
             }
         } while (opcion != 6);
     }
@@ -170,7 +166,7 @@ public class Prueba {
             System.out.println("Ingrese día entre 1-31");
             dia = inp.nextInt();
         }
-        System.out.println("Ingrese tipo de Actividad (número del 1-7)");
+        System.out.println("Ingrese tipo de Actividad \n 1-teatro \n  2-cine \n  3-viaje \n  4-paseo local \n  5-paseo interdepartamental \n  6- caminata \n  7- otro ");
         int tipo = inp.nextInt();
         while (tipo < 1 || tipo > 7) {
         //Se valida que la actividad este entre 1 y 7
@@ -183,6 +179,7 @@ public class Prueba {
         int costo = inp.nextInt();
         System.out.println("Ingrese la hora de comienzo");
         int horacomienzo = inp.nextInt();
+        //Se valida la hora de comienzo
         while (horacomienzo < 6 || horacomienzo > 20) {
             System.out.println("Seleccione hora de comienzo (6-20)");
             horacomienzo = inp.nextInt();
@@ -207,3 +204,4 @@ public class Prueba {
         return inscripcion;
     }
 }
+
