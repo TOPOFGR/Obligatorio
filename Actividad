@@ -78,6 +78,6 @@ public class Actividad {
 
     @Override
     public String toString() {
-        return ("Actividad el dia "  + this.getDia() + ", de tipo ++4115" + this.getTipo() + ", con la capacidad máxima de " + this.getCapmax() + " personas, con el costo " + this.getCosto() + ", con la hora de comienzo " + this.getHoracomienzo() );
+        return ("Actividad el dia "  + this.getDia() + ", de tipo " + this.getTipo() + ", con la capacidad máxima de " + this.getCapmax() + " personas, con el costo " + this.getCosto() + ", con la hora de comienzo " + this.getHoracomienzo() );
     }    
 }
