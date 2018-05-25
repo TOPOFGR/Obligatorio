@@ -14,23 +14,23 @@ public class Actividad {
     //variables de instancia
     private int dia;
     private int tipo;
-    private int capmax;
+    private int capacidadmaxima;
     private int costo;
-    private int horac;
+    private int horacomienzo;
 
     //constructores
     public Actividad() {
         this.setDia(4);
         this.setTipo(1);
-        this.setCapmax(28);
+        this.setCapacidadmaxima(28);
         this.setCosto(200);
         this.setHoracomienzo(18);
     }
 
-    public Actividad(int unDia, int unTipo, int unaCapmax, int unCosto, int unaHoracomienzo) {
+    public Actividad(int unDia, int unTipo, int unaCapacidadmaxima, int unCosto, int unaHoracomienzo) {
         this.setDia(unDia);
         this.setTipo(unTipo);
-        this.setCapmax(unaCapmax);
+        this.setCapacidadmaxima(unaCapacidadmaxima);
         this.setCosto(unCosto);
         this.setHoracomienzo(unaHoracomienzo);
     }
@@ -52,12 +52,12 @@ public class Actividad {
         this.tipo = unTipo;
     }
 
-    public int getCapmax() {
-        return capmax;
+    public int getCapacidadmaxima() {
+        return capacidadmaxima;
     }
 
-    public void setCapmax(int unaCapmax) {
-        this.capmax = unaCapmax;
+    public void setCapacidadmaxima(int unaCapacidadmaxima) {
+        this.capacidadmaxima = unaCapacidadmaxima;
     }
 
     public int getCosto() {
@@ -69,15 +69,15 @@ public class Actividad {
     }
 
     public int getHoracomienzo() {
-        return horac;
+        return horacomienzo;
     }
             
     public void setHoracomienzo(int unaHoracomienzo) {
-        this.horac = unaHoracomienzo;
+        this.horacomienzo = unaHoracomienzo;
     }
 
     @Override
     public String toString() {
-        return ("Actividad el dia "  + this.getDia() + ", de tipo " + this.getTipo() + ", con la capacidad máxima de " + this.getCapmax() + " personas, con el costo " + this.getCosto() + ", con la hora de comienzo " + this.getHoracomienzo() );
+        return ("Actividad el dia "  + this.getDia() + ", de tipo ++4115" + this.getTipo() + ", con la capacidad máxima de " + this.getCapacidadmaxima() + " personas, con el costo " + this.getCosto() + ", con la hora de comienzo " + this.getHoracomienzo() );
     }    
 }
