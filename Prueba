@@ -72,10 +72,11 @@ public class Prueba {
                     System.out.println("Ingrese hora en la que quiere que se lo pase a buscar");
                     int horarecogida1 =in.nextInt();
                     //Se valida que la hora de recogida sea una hora antes del comienzo de la actividad y dentro del horario establecido
-                    while ((horarecogida1+1>actividad.getHoracomienzo())||(horarecogida1 <6)){
+                    while ((horarecogida1+1>actividad.getHoracomienzo())||(horarecogida1 <6 )){
                         System.out.println("Ingrese una hora de Recogida una hora antes del comienzo de la actividad ("+actividad.getHoracomienzo()+") y entre 6-20hs");
                         horarecogida1 =in.nextInt();
                     }
+                    //Se llama al método para terminar de ingresar los datos
                     inscripcion1= ingresarInscripcion(horarecogida1,socio1,actividad);
                     System.out.println("Segundo Socio");
                     System.out.println("Ingrese hora en la que quiere que se lo pase a buscar");
@@ -85,8 +86,8 @@ public class Prueba {
                         System.out.println("Ingrese una hora de Recogida una hora antes del comienzo de la actividad ("+actividad.getHoracomienzo()+") y entre 6-20hs");
                         horarecogida2 =in.nextInt();
                     }
+                    //Se llama al método para terminar de ingresar los datos
                     inscripcion2= ingresarInscripcion(horarecogida2,socio2,actividad);
-                    
                     break;
                 case 3: 
                         if (inscripcion1.getHorarecogida()<inscripcion2.getHorarecogida()){
@@ -131,14 +132,12 @@ public class Prueba {
                         System.out.println("Primera " + inscripcion1);
                         System.out.println("Segunda " + inscripcion2);
                     break;
-                default:
-                    System.out.println("Ingrese un número del 1-6");
-                    opcion = in.nextInt();
-                    break;
-                
                 case 6:
                     System.out.println("Terminado");
                 break;
+                default:
+                    System.out.println("Ingrese un número del 1-6");
+                    break;
             }
         } while (opcion != 6);
     }
@@ -177,7 +176,7 @@ public class Prueba {
             System.out.println("Ingrese día entre 1-31");
             dia = inp.nextInt();
         }
-        System.out.println("Ingrese tipo de Actividad (número del 1-7)");
+        System.out.println("Ingrese tipo de Actividad  \\n 1-teatro \\n  2-cine \\n  3-viaje \\n  4-paseo local \\n  5-paseo interdepartamental \\n  6- caminata \\n  7- otro ");
         int tipo = inp.nextInt();
         while (tipo < 1 || tipo > 7) {
         //Se valida que la actividad este entre 1 y 7
@@ -190,8 +189,8 @@ public class Prueba {
         int costo = inp.nextInt();
         System.out.println("Ingrese la hora de comienzo");
         int horacomienzo = inp.nextInt();
-        while (horacomienzo < 6 || horacomienzo > 20) {
-            System.out.println("Seleccione hora de comienzo (6-20)");
+        while (horacomienzo < 7 || horacomienzo > 21) {
+            System.out.println("Seleccione hora de comienzo (7-21)");
             horacomienzo = inp.nextInt();
         }
         a = new Actividad(dia, tipo, capacidadmaxima, costo, horacomienzo);
