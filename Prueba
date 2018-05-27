@@ -1,4 +1,4 @@
-/*
+//*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -14,8 +14,11 @@ import java.util.Scanner;
 public class Prueba {
     public static void main(String[] args) {
         //Se definen los dos socios, una actividad y se crean dos inscripciones
+        System.out.println("Primer Socio\n*********************************");
         Socio socio1 = ingresarSocio();
+        System.out.println("Segundo Socio\n********************************");
         Socio socio2 = ingresarSocio();
+        System.out.println("Ingresar Actividad\n********************************");
         Actividad actividad = ingresarActividad();
         Inscripcion inscripcion1 = new Inscripcion();
         Inscripcion inscripcion2 = new Inscripcion();
@@ -23,186 +26,278 @@ public class Prueba {
         //Se empieza el menú
         Scanner in = new Scanner(System.in);
         do {
-            System.out.println("Seleccione opción del menú \n 1) Actualización de datos de socio \n 2) Inscripciones a actividad \n 3) Listado de inscripciones \n 4) Actualización de hora de actividad \n 5) Mostrar datos \n 6) Terminar");
+            System.out.println("Seleccione opción del menú \n 1) Actualización "
+                    + "de datos de socio \n 2) Inscripciones a actividad \n 3) "
+                    + "Listado de inscripciones \n 4) Actualización de hora de "
+                    + "actividad \n 5) Mostrar datos \n 6) Terminar");
             opcion = in.nextInt();
             switch (opcion) {
-                case 1: 
-                    System.out.println("Indique cual socio se modificará");
+                case 1:
+                    //Modifica los datos del Socio
+                    System.out.println("Indique cual socio se modificará, "
+                            + "ingrese 1 o 2");
                     int socio = in.nextInt();
-                    switch (socio){
+                    switch (socio) {
                         //Se selecciona que socio quiere que se modifique
                         case 1:
-                                String nuevaDireccion1 = in.nextLine();
-                                System.out.println("Ingrese nueva Dirección");
+                            //Se modifica la direccion y la edad del Primer Socio
+                            String nuevaDireccion1 = in.nextLine();
+                            System.out.println("Ingrese nueva Dirección");
+                            nuevaDireccion1 = in.nextLine();
+                            //Se valida la nueva dirección del Primer Socio 
+                            while (validarTexto(nuevaDireccion1)){
+                                System.out.println("Ingrese Dirección válida");
                                 nuevaDireccion1 = in.nextLine();
-                                socio1.setDireccion(nuevaDireccion1);
-                                System.out.println("Ingrese nueva Edad");
-                                int nuevaEdad1 = in.nextInt();
-                                while (nuevaEdad1<18 || nuevaEdad1>99){
+                            }
+                            socio1.setDireccion(nuevaDireccion1);
+                            System.out.println("Ingrese nueva Edad (entre 18-99)");
+                            int nuevaEdad1 = in.nextInt();
+                            while (validarEdad(nuevaEdad1)) {
                                 //Se valida la Edad del primer Socio
-                                    System.out.println("Ingrese Edad válida (18-99");
-                                    nuevaEdad1 = in.nextInt();
-                                }
-                                socio1.setEdad(nuevaEdad1);
+                                System.out.println("Ingrese Edad válida (18-99)");
+                                nuevaEdad1 = in.nextInt();
+                            }
+                            socio1.setEdad(nuevaEdad1);
                             break;
-                    
                         case 2:
-                                String nuevaDireccion2 = in.nextLine();
-                                System.out.println("Ingrese nueva Dirección");
+                            //Se modifica la direccion y la edad del Segundo Socio
+                            String nuevaDireccion2 = in.nextLine();
+                            System.out.println("Ingrese nueva Dirección");
+                            nuevaDireccion2 = in.nextLine();
+                            //Se valida la nueva dirección del Primer Socio
+                            while (validarTexto(nuevaDireccion2)){
+                                System.out.println("Ingrese Dirección válida");
                                 nuevaDireccion2 = in.nextLine();
-                                socio2.setDireccion(nuevaDireccion2);
-                                System.out.println("Ingrese nueva Edad");
-                                int nuevaEdad2 = in.nextInt();
-                                while (nuevaEdad2<18 || nuevaEdad2>99){
+                            }
+                            socio2.setDireccion(nuevaDireccion2);
+                            System.out.println("Ingrese nueva Edad (entre 18-99)");
+                            int nuevaEdad2 = in.nextInt();
+                            while (validarEdad(nuevaEdad2)) {
                                 //Se valida la Edad del segundo Socio
-                                    System.out.println("Ingrese Edad válida (18-99");
-                                    nuevaEdad2 = in.nextInt();
-                                }
-                                socio2.setEdad(nuevaEdad2);                    
+                                System.out.println("Ingrese Edad válida (18-99)");
+                                nuevaEdad2 = in.nextInt();
+                            }
+                            socio2.setEdad(nuevaEdad2);
                             break;
-                        
+
                         default:
                             System.out.println("Ingrese un socio válido (1 o 2)");
                             break;
                     }
                     break;
                 case 2:
-                    //Se hace el cambio mediante el método "ingresarInscripcion"
+                    //Ingresar la inscripcion de los dos socios
+                    //Se ingresa la inscripcion del Primer Socio
                     System.out.println("Primer Socio");
-                    System.out.println("Ingrese hora en la que quiere que se lo pase a buscar");
-                    int horarecogida1 =in.nextInt();
+                    System.out.println("Ingrese hora en la que quiere que se lo "
+                            + "pase a buscar,\npor lo menos una hora antes de la"
+                            + " actividad ("+actividad.getHoracomienzo()+"hs)"
+                                    + " y entre 6-20 hs");
+                    int horarecogida1 = in.nextInt();
                     //Se valida que la hora de recogida sea una hora antes del comienzo de la actividad y dentro del horario establecido
-                    while ((horarecogida1+1>actividad.getHoracomienzo())||(horarecogida1 <6 )){
-                        System.out.println("Ingrese una hora de Recogida una hora antes del comienzo de la actividad ("+actividad.getHoracomienzo()+") y entre 6-20hs");
-                        horarecogida1 =in.nextInt();
+                    while ((horarecogida1 + 1 > actividad.getHoracomienzo()) || (horarecogida1 < 6)) {
+                        System.out.println("Ingrese una hora de Recogida una "
+                                + "hora antes del comienzo de la actividad "
+                                + "(" + actividad.getHoracomienzo() + ") y entre "
+                                + "6-20hs");
+                        horarecogida1 = in.nextInt();
                     }
                     //Se llama al método para terminar de ingresar los datos
-                    inscripcion1= ingresarInscripcion(horarecogida1,socio1,actividad);
+                    inscripcion1 = ingresarInscripcion(horarecogida1, socio1, actividad);
                     System.out.println("Segundo Socio");
-                    System.out.println("Ingrese hora en la que quiere que se lo pase a buscar");
-                    int horarecogida2 =in.nextInt();
+                    System.out.println("Ingrese hora en la que quiere que se lo"
+                            + " pase a buscar,\npor lo menos una hora antes de la"
+                            + " actividad ("+actividad.getHoracomienzo()+"hs)");
+                    int horarecogida2 = in.nextInt();
                     //Se valida que la hora de recogida sea una hora antes del comienzo de la actividad y dentro del horario establecido
-                    while ((horarecogida2+1>actividad.getHoracomienzo())||(horarecogida2 <6)){
-                        System.out.println("Ingrese una hora de Recogida una hora antes del comienzo de la actividad ("+actividad.getHoracomienzo()+") y entre 6-20hs");
-                        horarecogida2 =in.nextInt();
+                    while ((horarecogida2 + 1 > actividad.getHoracomienzo()) || (horarecogida2 < 6)) {
+                        System.out.println("Ingrese una hora de Recogida una "
+                                + "hora antes del comienzo de la actividad "
+                                + "(" + actividad.getHoracomienzo() + ") y entre "
+                                + "6-20hs");
+                        horarecogida2 = in.nextInt();
                     }
                     //Se llama al método para terminar de ingresar los datos
-                    inscripcion2= ingresarInscripcion(horarecogida2,socio2,actividad);
+                    inscripcion2 = ingresarInscripcion(horarecogida2, socio2, actividad);
+                    existeInscripcion=true;
                     break;
-                case 3: 
-                        if (inscripcion1.getHorarecogida()<inscripcion2.getHorarecogida()){
+                case 3:
+                    if (existeInscripcion){
+                    if (inscripcion1.getHorarecogida() < inscripcion2.getHorarecogida()) {
                         //Se ordena por la hora de pasar a buscar a la persona
-                            System.out.println(inscripcion1.getHorarecogida()+ "\n" + inscripcion2.getHorarecogida());
+                        System.out.println(inscripcion1.getHorarecogida() + "\n" + inscripcion2.getHorarecogida());
+                    } 
+                    else {
+                        System.out.println(inscripcion2.getHorarecogida() + "\n" + inscripcion1.getHorarecogida());
+                    } 
+                    //Se indica si las horas de recogida son tempranas
+                    if (inscripcion1.getHorarecogida() + 3 < actividad.getHoracomienzo() || inscripcion2.getHorarecogida() + 3 < actividad.getHoracomienzo()) {
+                        //Se verifica cual es temprana, si almbas son tempranas o ningna es temprana
+                        if (inscripcion1.getHorarecogida() + 3 < actividad.getHoracomienzo()) {
+                            System.out.println(inscripcion1.getHorarecogida()+""
+                                    + " es Temprana");
                         }
-                        else {
-                            System.out.println(inscripcion2.getHorarecogida()+ "\n" + inscripcion1.getHorarecogida());
-                        } //Se indica si las horas de recogida son tempranas
-                        if (inscripcion1.getHorarecogida()+3<actividad.getHoracomienzo() || inscripcion2.getHorarecogida()+3<actividad.getHoracomienzo()){
-                        //Se verifica cual es temprana
-                            if (inscripcion1.getHorarecogida()+3<actividad.getHoracomienzo() ){
-                                System.out.println(inscripcion1.getHorarecogida()+" es Temprana");
-                            }
-                            if (inscripcion2.getHorarecogida()+3<actividad.getHoracomienzo() ){
-                                System.out.println(inscripcion2.getHorarecogida()+" es Temprana");
-                            }
+                        if (inscripcion1.getHorarecogida() + 3 < actividad.getHoracomienzo() && inscripcion2.getHorarecogida() + 3 < actividad.getHoracomienzo()) {
+                            System.out.println(" y también ");
                         }
-                        else {
-                            System.out.println("Ninguna es Temprana");
+                        if (inscripcion2.getHorarecogida() + 3 < actividad.getHoracomienzo()) {
+                            System.out.println(inscripcion2.getHorarecogida()+""
+                                    + " es Temprana");
                         }
-                        if (inscripcion1.getHorarecogida()+3<actividad.getHoracomienzo() && inscripcion2.getHorarecogida()+3<actividad.getHoracomienzo()){
-                            System.out.println("Ambas son Tempranas");
-                        }
+                    } else {
+                        System.out.println("Ninguna es Temprana");
+                    }
+                    }
+                    else{
+                        System.out.println("No Hay inscripciones");
+                    }
                     break;
-                case 4: 
-                    System.out.println("Ingrese nueva hora de Actividad");
+                case 4:
+                    //Modificar Actividad
+                    System.out.println("Ingrese nueva hora de Actividad entre 7-21");
                     //Se modifica la hora de la Actividad
                     int nuevaHoraActividad = in.nextInt();
-                    while (nuevaHoraActividad<7 || nuevaHoraActividad>21){
-                    //Se valida la hora de la Actividad
+                    while (horaActividad(nuevaHoraActividad)) {
+                        //Se valida la hora de la Actividad
                         System.out.println("Seleccione hora valida (7-21)");
-                        nuevaHoraActividad = in.nextInt();    
+                        nuevaHoraActividad = in.nextInt();
                     }
-                    int relacion= nuevaHoraActividad - actividad.getHoracomienzo();
+                    int relacion = nuevaHoraActividad - actividad.getHoracomienzo();
                     actividad.setHoracomienzo(nuevaHoraActividad);
-                        inscripcion1.setHorarecogida(inscripcion1.getHorarecogida() +relacion);
-                        inscripcion2.setHorarecogida(inscripcion2.getHorarecogida() +relacion);   
+                    inscripcion1.setHorarecogida(inscripcion1.getHorarecogida() + relacion);
+                    inscripcion2.setHorarecogida(inscripcion2.getHorarecogida() + relacion);
+                    if (existeInscripcion){                        
+                    //Se muestran las horas modificadas
+                    System.out.println("La nueva hora de Recogida del primer "
+                            + "socio  es " +(inscripcion1.getHorarecogida()));
+                    System.out.println("La nueva hora de Recogida del segundo "
+                            + "socio  es " +(inscripcion2.getHorarecogida()));
+                    }
+                    else{
+                        System.out.println("No hay inscripciones");
+                    }
                     break;
-                case 5: 
-                    //Se imprimen ambas inscripciones
-                        System.out.println("Primera " + inscripcion1);
-                        System.out.println("Segunda " + inscripcion2);
+                case 5:
+                    //Se verifica que existen Inscripciones
+                    if (existeInscripcion){
+                    System.out.println("Primera " + inscripcion1);
+                    System.out.println("Segunda " + inscripcion2);
+                    }
+                    else{
+                        System.out.println("No se crearon Inscripciones");
+                    }
                     break;
                 case 6:
                     System.out.println("Terminado");
-                break;
+                    break;
                 default:
                     System.out.println("Ingrese un número del 1-6");
                     break;
             }
         } while (opcion != 6);
     }
-    public static Socio ingresarSocio() { 
-        //Se hace el método para poder ingresar los datos de los Socios
-        Socio socio = new Socio();
+
+    public static Socio ingresarSocio() {
+        //Se hace el método para poder ingresar los datos de los Socios 
         Scanner input = new Scanner(System.in);
-        System.out.println("Ingrese nombre del Socio");
+        System.out.println("Ingrese Nombre del Socio");
         String nombre = input.nextLine();
-        if (nombre.length()==0){
-            System.out.println("Ingrese un nombre válido");
-            nombre = input.nextLine();
+        //Se valida el nombre del Socio
+        while (validarTexto(nombre)){
+        System.out.println("Ingrese un Nombre");
+        nombre = input.nextLine();
         }
-        System.out.println("Ingresar Edad");
+        System.out.println("Ingresar Edad (entre 18-99)");
         int edad = input.nextInt();
-        while ((edad<18)|| (edad >99)) {
+        while (validarEdad(edad)) {
             System.out.println("Ingrese Edad entre 18 y 99");
             edad = input.nextInt();
         }
         System.out.println("Ingresar Cedula de identidad (sin guiones)");
         int cedula = input.nextInt();
-        input.nextLine();
-        System.out.println("Ingresar dirección");
+        while (validarPositivo(cedula)){
+            System.out.println("Ingrese Cédula válida");
+            cedula = input.nextInt();
+        }
+        System.out.println("Ingresar Dirección");
         String direccion = input.nextLine();
-        socio = new Socio(nombre, edad, cedula, direccion);
+        direccion = input.nextLine();
+        while (validarTexto(direccion)){
+            System.out.println("Ingresar Dirección válida");
+            direccion = input.nextLine();
+        }
+        Socio socio = new Socio(nombre, edad, cedula, direccion);
         return socio;
     }
+
     public static Actividad ingresarActividad() {
         //Se hace el método para poder ingresar los datos de la Actividad
         Scanner inp = new Scanner(System.in);
-        Actividad a = new Actividad();
-        System.out.println("Ingrese día de la Actividad");
+        System.out.println("Ingrese día de la Actividad (entre 1-31)");
         int dia = inp.nextInt();
         while (dia < 1 || dia > 31) {
-        //Se valida que el día este entre 1 y 31
+            //Se valida que el día este entre 1 y 31
             System.out.println("Ingrese día entre 1-31");
             dia = inp.nextInt();
         }
-        System.out.println("Ingrese tipo de Actividad  \\n 1-teatro \\n  2-cine \\n  3-viaje \\n  4-paseo local \\n  5-paseo interdepartamental \\n  6- caminata \\n  7- otro ");
+        System.out.println("Ingrese tipo de Actividad \n  1-teatro \n  2-cine \n"
+                + "  3-viaje \n  4-paseo local \n  5-paseo interdepartamental \n"
+                + "  6- caminata \n  7- otro ");
         int tipo = inp.nextInt();
         while (tipo < 1 || tipo > 7) {
-        //Se valida que la actividad este entre 1 y 7
+            //Se valida que la actividad este entre 1 y 7
             System.out.println("Ingrese actividad entre 1-7");
             tipo = inp.nextInt();
         }
         System.out.println("Ingrese Capacidad Máxima");
         int capacidadmaxima = inp.nextInt();
+        //Se valida que la capacidad no sea negativa
+        while (validarPositivo(capacidadmaxima)){
+            System.out.println("Ingrese una capacidad válida");
+            capacidadmaxima = inp.nextInt();
+        }
         System.out.println("Ingrese costo");
         int costo = inp.nextInt();
-        System.out.println("Ingrese la hora de comienzo");
+        while (validarPositivo(costo)){
+            System.out.println("Ingrese un costo válido");
+            costo = inp.nextInt();
+        }
+        System.out.println("Ingrese la hora de comienzo (entre 7-21)");
         int horacomienzo = inp.nextInt();
-        while (horacomienzo < 7 || horacomienzo > 21) {
-            System.out.println("Seleccione hora de comienzo (7-21)");
+        while (horaActividad(horacomienzo)) {
+            System.out.println("Seleccione hora de comienzo válido (entre 7-21)");
             horacomienzo = inp.nextInt();
         }
-        a = new Actividad(dia, tipo, capacidadmaxima, costo, horacomienzo);
+        Actividad a = new Actividad(dia, tipo, capacidadmaxima, costo, horacomienzo);
         return a;
     }
-    public static Inscripcion ingresarInscripcion(int unaHorarecogida, Socio unSocio,Actividad unaActividad){
+    public static Inscripcion ingresarInscripcion(int unaHorarecogida, Socio unSocio, Actividad unaActividad) {
         //Se crea el método para ingresar el Socio
-        Scanner ins = new Scanner (System.in);
-        Inscripcion inscripcion =new Inscripcion();
+        Scanner ins = new Scanner(System.in);
         System.out.println("Ingrese Telefono de Contacto");
         int telefono = ins.nextInt();
-        inscripcion = new Inscripcion(unaHorarecogida,unSocio,unaActividad, telefono);
+        while (validarPositivo(telefono)){
+            System.out.println("Ingrese un teléfono correcto");
+            telefono = ins.nextInt();
+        }
+        Inscripcion inscripcion = new Inscripcion(unaHorarecogida, unSocio, unaActividad, telefono);
         return inscripcion;
     }
+    //Boolean para validar que el texto no sea vacío
+    public static boolean validarTexto(String texto){
+        return texto.trim().isEmpty();
+    }
+    //Boolean que valide que sea positivo el número
+    public static boolean validarPositivo(int numero){
+        return numero<0;
+    }
+    //Boolean que valida la Edad
+    public static boolean validarEdad(int edad){
+        return (edad <18 || edad>99);
+    }
+    public static boolean horaActividad(int hora){
+        return (hora<7 || hora >21);
+    }
+    //Boolean que verifique que hay Inscripciones
+    static boolean existeInscripcion=false;
 }
