@@ -1,4 +1,4 @@
-//*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -14,11 +14,11 @@ import java.util.Scanner;
 public class Prueba {
     public static void main(String[] args) {
         //Se definen los dos socios, una actividad y se crean dos inscripciones
-        System.out.println("Primer Socio\n*********************************");
+        System.out.println("Primer Socio");
         Socio socio1 = ingresarSocio();
-        System.out.println("Segundo Socio\n********************************");
+        System.out.println("Segundo Socio");
         Socio socio2 = ingresarSocio();
-        System.out.println("Ingresar Actividad\n********************************");
+        System.out.println("Ingresar Actividad");
         Actividad actividad = ingresarActividad();
         Inscripcion inscripcion1 = new Inscripcion();
         Inscripcion inscripcion2 = new Inscripcion();
@@ -40,6 +40,7 @@ public class Prueba {
                     switch (socio) {
                         //Se selecciona que socio quiere que se modifique
                         case 1:
+                            System.out.println("Primer Socio \n ");
                             //Se modifica la direccion y la edad del Primer Socio
                             String nuevaDireccion1 = in.nextLine();
                             System.out.println("Ingrese nueva Dirección");
@@ -60,6 +61,7 @@ public class Prueba {
                             socio1.setEdad(nuevaEdad1);
                             break;
                         case 2:
+                            System.out.println("Segundo Socio");
                             //Se modifica la direccion y la edad del Segundo Socio
                             String nuevaDireccion2 = in.nextLine();
                             System.out.println("Ingrese nueva Dirección");
@@ -174,7 +176,7 @@ public class Prueba {
                             + "socio  es " +(inscripcion2.getHorarecogida()));
                     }
                     else{
-                        System.out.println("No hay inscripciones");
+                        System.out.println("No hay inscripciones para modificar");
                     }
                     break;
                 case 5:
@@ -300,4 +302,7 @@ public class Prueba {
     }
     //Boolean que verifique que hay Inscripciones
     static boolean existeInscripcion=false;
+    public static boolean mayorEdad(int edad){
+        return (edad!=17);
+    }
 }
