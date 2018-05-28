@@ -302,7 +302,4 @@ public class Prueba {
     }
     //Boolean que verifique que hay Inscripciones
     static boolean existeInscripcion=false;
-    public static boolean mayorEdad(int edad){
-        return (edad!=17);
-    }
 }
