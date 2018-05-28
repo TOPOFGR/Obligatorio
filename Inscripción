@@ -9,64 +9,65 @@ package Obligatorio;
  *
  * @author Franco Galeano y Felipe Estrella
  */
-public class Socio {
+public class Inscripcion {
 
-    //variables de instancia
-    private String nombre;
-    private int edad;
-    private int ci;
-    private String direccion;
-
+    //variables de instancia 
+    private int horarecogida;
+    private Socio socio;
+    private Actividad actividad;
+    private int telefono;
+    
     //Constructores
-    public Socio() {
-        this.setNombre("Pepe");
-        this.setEdad(18);
-        this.setCi(49396412);
-        this.setDireccion("Av. Brasil");
+    public Inscripcion(){
+        this.setHorarecogida (12);
+        this.setSocio (new Socio());
+        this.setActividad (new Actividad());
+        this.setTelefono (27072345);
     }
 
-    public Socio(String unNombre, int unaEdad, int unaCi, String unaDireccion) {
-        this.setNombre(unNombre);
-        this.setEdad(unaEdad);
-        this.setCi(unaCi);
-        this.setDireccion(unaDireccion);
+    public Inscripcion(int unaHorarecogida, Socio unSocio, Actividad unaActividad, int unTelefono) {
+        this.setHorarecogida (unaHorarecogida);
+        this.setSocio (unSocio);
+        this.setActividad  (unaActividad);
+        this.setTelefono (unTelefono);
     }
 
-    //metodos de acceso y modificacion    
-    public String getNombre() {
-        return nombre;
+    //métodos de acceso y modificación
+    public int getHorarecogida() {
+        return horarecogida;
     }
 
-    public void setNombre(String unNombre) {
-        this.nombre = unNombre;
+    public void setHorarecogida(int unaHorarecogida) {
+        this.horarecogida = unaHorarecogida;
     }
 
-    public int getEdad() {
-        return edad;
+    public Socio getSocio() {
+        return socio;
     }
 
-    public void setEdad(int unaEdad) {
-        this.edad = unaEdad;
+    public void setSocio(Socio unSocio) {
+        this.socio = unSocio;
     }
 
-    public int getCi() {
-        return ci;
+    public Actividad getActividad() {
+        return actividad;
     }
 
-    public void setCi(int unaCi) {
-        this.ci = unaCi;
+    public void setActividad(Actividad actividad) {
+        this.actividad = actividad;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public int getTelefono() {
+        return telefono;
     }
 
-    public void setDireccion(String unaDireccion) {
-        this.direccion = unaDireccion;
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
     }
 
     @Override
     public String toString() {
-        return ("Socio de Nombre " + this.getNombre() + " con  " + this.getEdad() + " años, de CI " + this.getCi() + " y de dirección " + this.getDireccion());
+        return ("Inscripción en la hora de recogida " + this.getHorarecogida() + ", del socio " + this.getSocio() + ", a la actividad " + this.getActividad() + ", con el telefono de contacto " + this.getTelefono()  );
     }
+    
 }
